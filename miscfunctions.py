@@ -1,6 +1,6 @@
 # Chase Brown
 # SID 106015389
-# DeepLearning PA 2: CNN using Keras
+# DeepLearning PA 2: ANN/CNN using Keras
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -149,3 +149,12 @@ class MiscFunctions:
                                             title='Normalized confusion matrix')
 
         plt.show()
+
+    @staticmethod
+    def reshape_x(x_array):
+        new_x = []
+        for row in x_array:
+            img = row.reshape(28, 28)
+            new_x.append(img)
+        x = np.array(new_x)
+        return x

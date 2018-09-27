@@ -1,6 +1,6 @@
 # Chase Brown
 # SID 106015389
-# DeepLearning PA 2: CNN using Keras
+# DeepLearning PA 2: ANN/CNN using Keras
 
 # data_process: Contains module class for loading data from zip files.
 from zipfile import ZipFile
@@ -24,3 +24,4 @@ class LoadDataModule(object):
         with ZipFile(image_zip, 'r') as imgzip:
             images = np.frombuffer(imgzip.read(image_filename), dtype=np.uint8, offset=16).reshape(len(labels), 784)
         return images, labels
+
