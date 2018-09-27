@@ -199,7 +199,7 @@ class NnModels:
         tBoard = TensorBoard(log_dir='logs/{}'.format(timeStamp))
 
         # Define params for model fit
-        num_epochs = 5
+        num_epochs = 50
         batch_size = 200
 
         # Fit the model and record the history of the training results
