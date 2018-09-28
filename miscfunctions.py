@@ -13,7 +13,7 @@ import cv2
 class MiscFunctions:
     # Plot the model fit history
     @staticmethod
-    def plot_history(history):
+    def plot_history(history, model_type):
         loss_list = [s for s in history.history.keys() if 'loss' in s and 'val' not in s]
         val_loss_list = [s for s in history.history.keys() if 'loss' in s and 'val' in s]
         acc_list = [s for s in history.history.keys() if 'acc' in s and 'val' not in s]
@@ -34,11 +34,13 @@ class MiscFunctions:
         for l in val_loss_list:
             plt.plot(epochs, history.history[l], 'g',
                      label='Validation loss (' + str(str(format(history.history[l][-1], '.5f')) + ')'))
-
-        plt.title('Loss')
+        title = model_type + '_loss'
+        plt.title(title)
         plt.xlabel('Epochs')
         plt.ylabel('Loss')
         plt.legend()
+        t = model_type + '_loss.png'
+        plt.savefig(t)
 
         # Accuracy
         plt.figure(2)
@@ -48,15 +50,17 @@ class MiscFunctions:
         for l in val_acc_list:
             plt.plot(epochs, history.history[l], 'g',
                      label='Validation accuracy (' + str(format(history.history[l][-1], '.5f')) + ')')
-
-        plt.title('Accuracy')
+        title = model_type + '_Accuracy'
+        plt.title(title)
         plt.xlabel('Epochs')
         plt.ylabel('Accuracy')
         plt.legend()
+        t = model_type + '_accuracy.png'
+        plt.savefig(t)
         plt.show()
 
     @staticmethod
-    def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
+    def plot_confusion_matrix(cm, model_type, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
         """
         This function prints and plots the confusion matrix.
         Normalization can be applied by setting `normalize=True`.
@@ -65,12 +69,15 @@ class MiscFunctions:
         :param normalize: normalize true/false
         :param title: Title of plot :type: String
         :param cmap: color map
+        :param model_type: nn model type
         """
         if normalize:
             cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
             print("Normalized confusion matrix\n============================")
+            t = model_type + '_norm_cfm.png'
         else:
             print('Confusion matrix, without normalization\n============================')
+            t = model_type + '_cfm.png'
 
         print(cm)
         print("\n")
@@ -90,6 +97,7 @@ class MiscFunctions:
                      color="white" if cm[i, j] > thresh else "black")
 
         plt.tight_layout()
+        plt.savefig(t)
 
     @staticmethod
     def model_summary(model, model_type):
@@ -107,7 +115,7 @@ class MiscFunctions:
         plt.show()
 
     @staticmethod
-    def final_eval(model, x_test, y_test, history, class_names):
+    def final_eval(model, x_test, y_test, history, class_names, model_type):
         """
         Final Evaluation of the model
         :param model: nn model
@@ -115,6 +123,7 @@ class MiscFunctions:
         :param y_test: Real y values
         :param history: Models run history
         :param class_names: Models class names 0-9
+        :param model_type: nn model type
         """
         # Baseline error and accuracy of the model
         scores = model.evaluate(x_test, y_test, verbose=0)
@@ -122,7 +131,7 @@ class MiscFunctions:
         print("Accuracy: %.2f" % scores[1])
 
         # Print/plot the training history
-        MiscFunctions.plot_history(history)
+        MiscFunctions.plot_history(history, model_type)
         # Predicted values from x_test
         y_pred = model.predict_classes(x_test)
         # Original 'actual' values
@@ -140,12 +149,12 @@ class MiscFunctions:
 
         # Plot non-normalized confusion matrix
         plt.figure()
-        MiscFunctions.plot_confusion_matrix(cnf_matrix, classes=class_names,
+        MiscFunctions.plot_confusion_matrix(cnf_matrix, model_type, classes=class_names,
                                             title='Confusion matrix, without normalization')
 
         # Plot normalized confusion matrix
         plt.figure()
-        MiscFunctions.plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
+        MiscFunctions.plot_confusion_matrix(cnf_matrix, model_type, classes=class_names, normalize=True,
                                             title='Normalized confusion matrix')
 
         plt.show()

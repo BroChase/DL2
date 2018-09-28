@@ -26,8 +26,8 @@ if __name__ == '__main__':
     # Run ANN model
     nn_models.NnModels.baseline_ann()
     # Run baseline CNN model
-    nn_models.NnModels.baseline_cnn()
+    #nn_models.NnModels.baseline_cnn()
     # Run bigger CNN model
-    nn_models.NnModels.bigger_cnn()
+    #nn_models.NnModels.bigger_cnn()
 
     print('Test')

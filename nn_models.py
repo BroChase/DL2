@@ -74,7 +74,7 @@ class NnModels:
                             batch_size=batch_size, verbose=2, callbacks=[tBoard])
 
         # Evaluate the model
-        mf.final_eval(model, x_test, y_test, history, class_names)
+        mf.final_eval(model, x_test, y_test, history, class_names, 'ann_model')
 
     @staticmethod
     def baseline_cnn():
@@ -138,7 +138,7 @@ class NnModels:
                                 batch_size=batch_size, verbose=2, callbacks=[tBoard])
 
         # Evaluate the model
-        mf.final_eval(model, x_test, y_test, history, class_names)
+        mf.final_eval(model, x_test, y_test, history, class_names, 'cnn_model')
 
     @staticmethod
     def bigger_cnn():
@@ -207,7 +207,7 @@ class NnModels:
                                 batch_size=batch_size, verbose=2, callbacks=[tBoard])
 
         # Evaluate the model
-        mf.final_eval(model, x_test, y_test, history, class_names)
+        mf.final_eval(model, x_test, y_test, history, class_names, 'big_cnn_model')
 
 
 
