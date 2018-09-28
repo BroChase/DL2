@@ -2,22 +2,13 @@
 # SID 106015389
 # DeepLearning PA 2: ANN/CNN using Keras
 
-import numpy as np
-import data_process
 import nn_models
-from miscfunctions import MiscFunctions as mf
-from keras.utils import np_utils
-from keras.callbacks import TensorBoard
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import time
 import os
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.3
 set_session(tf.Session(config=config))
-
 print(tf.__version__)
 
 if __name__ == '__main__':
@@ -26,8 +17,7 @@ if __name__ == '__main__':
     # Run ANN model
     nn_models.NnModels.baseline_ann()
     # Run baseline CNN model
-    #nn_models.NnModels.baseline_cnn()
+    nn_models.NnModels.baseline_cnn()
     # Run bigger CNN model
-    #nn_models.NnModels.bigger_cnn()
+    nn_models.NnModels.bigger_cnn()
 
-    print('Test')

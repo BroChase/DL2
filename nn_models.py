@@ -190,7 +190,7 @@ class NnModels:
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         # print the model
-        mf.model_summary(model, 'cnn_model_plot.png')
+        mf.model_summary(model, 'b_cnn_model_plot.png')
 
         t = time.localtime(time.time())
         timeStamp = str(t.tm_year) + '-' + str(t.tm_mon) + '-' + str(t.tm_mday) \
