@@ -2,12 +2,13 @@
 # SID 106015389
 # DeepLearning PA 2: ANN/CNN using Keras
 
+# MiscFunctions:plot_history, plot_confusion_matrix, model_summary supplied by Professor Ashis Biswas
 import numpy as np
 import matplotlib.pyplot as plt
 import itertools
+import cv2
 from keras.utils.vis_utils import plot_model
 from sklearn.metrics import classification_report, confusion_matrix
-import cv2
 
 
 class MiscFunctions:

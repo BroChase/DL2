@@ -1,19 +1,20 @@
 # Chase Brown
 # SID 106015389
 # DeepLearning PA 2: ANN/CNN using Keras
-
 # cnn_models: contains cnn models
 import numpy as np
 import data_process
+import time
 from keras import Sequential
 from keras.layers import Dense
 from keras.layers.convolutional import Conv2D,MaxPooling2D
 from keras.layers import Flatten
 from keras.utils import np_utils
 from keras.callbacks import TensorBoard
-import time
 from miscfunctions import MiscFunctions as mf
 from keras import backend as K
+
+# Set what backend image settings Keras should use. tf=Tensorflow
 K.set_image_dim_ordering('tf')
 
 

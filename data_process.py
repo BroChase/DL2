@@ -3,8 +3,9 @@
 # DeepLearning PA 2: ANN/CNN using Keras
 
 # data_process: Contains module class for loading data from zip files.
-from zipfile import ZipFile
+# Load function supplied by Professor Ashis Biswas
 import numpy as np
+from zipfile import ZipFile
 
 
 class LoadDataModule(object):
@@ -12,9 +13,12 @@ class LoadDataModule(object):
         self.DIR = './'
         pass
 
-    # Returns images and labels corresponding for training and testing. Default mode is train.
-    # For retrieving test data pass mode as 'test' in function call.
     def load(self, mode):
+        """
+        Load the zip files contents into nparrays
+        :param mode: First string of file parse 'train' or 'test'
+        :return: array of number of labesl x (pixels for 28x28 images:'784'), array of number of samples x labels
+        """
         label_filename = mode + '_labels'
         image_filename = mode + '_images'
         label_zip = self.DIR + label_filename + '.zip'
